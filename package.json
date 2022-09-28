@@ -1,0 +1,19 @@
+{
+  "name": "backend_messenger_ts",
+  "version": "1.0.0",
+  "description": "backend for chat app in typescript",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript",
+    "chat",
+    "node"
+  ],
+  "author": "Kenny Molina <kjmolina@live.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
