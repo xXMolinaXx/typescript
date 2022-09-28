@@ -1,8 +1,8 @@
 # instalacion de TS
 -npm install typescript --save-dev
 -npx tsc --version   
-normalmente typescript no se trabaja como una dependencia global.  
-si no como una dependencia de proyecto.  
+<br>normalmente typescript no se trabaja como una dependencia global.<br>  
+si no como una dependencia de proyecto.<br>
 extra: gitignore.io pagina para crear un git ignore
 
 # COMANDOS DE TS
