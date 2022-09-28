@@ -1,10 +1,10 @@
-##instalacion de TS
+# instalacion de TS
 -npm install typescript --save-dev
 -npx tsc --version
 normalmente typescript no se trabaja como una dependencia global, si no como una dependencia de proyecto
 extra: gitignore.io pagina para crear un git ignore
 
-## COMANDOS DE TS
+# COMANDOS DE TS
 -npx tsc <ARCHIVO> compila de ts a js 
 ejemplo npx tsc src/*.ts --outDir dist --target es6
 -flags : --outDir(la traduciones la guarda en una carpeta, en el ejemplo de arriba se le llamo dist), --target ( se seleciona la version de ecma script que por defecto es es3 y en el ejemplo selecionamos es6)
