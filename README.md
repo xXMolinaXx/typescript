@@ -25,3 +25,8 @@ ejemplo npx tsc src/*.ts --outDir dist --target es6
 - symbol 
 - object
 - function
+
+# cast 
+- let variable = ( otra_variable as tipodedato);
+ ejemplo let numero = ( numero_string as number );
+ ejemplo 2 let numero = (<number>numero_string);
