@@ -10,7 +10,7 @@ extra: gitignore.io pagina para crear un git ignore
 ejemplo npx tsc src/*.ts --outDir dist --target es6
 - flags : --outDir(la traduciones la guarda en una carpeta, en el ejemplo de arriba se le llamo dist), --target ( se seleciona la version de ecma script que por defecto es es3 y en el ejemplo selecionamos es6)
 - npx tsc --init crea el archivo tsconfig.json
---npx tsc --watch va a estar leyendo mis archivos constantemente y va traspilarlos a js para una actualizacion en vivo
+- npx tsc --watch va a estar leyendo mis archivos constantemente y va traspilarlos a js para una actualizacion en vivo
 # ARCHIVO tsconfig.json
 - se descomentan estos valores en el archivo 
 - rootDir: cual es la ruta de los archivo que se compilaran
