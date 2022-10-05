@@ -30,3 +30,10 @@ ejemplo npx tsc src/*.ts --outDir dist --target es6
 - let variable = ( otra_variable as tipodedato);
  ejemplo let numero = ( numero_string as number );
  ejemplo 2 let numero = (<number>numero_string);
+
+# UNION
+permite poder selecionar 2 o mas  tipos de datos sera una variable.  
+ejemplo: let numero : (string | number);
+#  Literal types
+son valores predefinidos ejemplo
+let size: 'M'|'L'

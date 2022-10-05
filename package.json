@@ -13,6 +13,12 @@
   ],
   "author": "Kenny Molina <kjmolina@live.com>",
   "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "moongose": "^1.0.0",
+    "socket.io": "^4.5.1"
+  },
   "devDependencies": {
     "typescript": "^4.8.4"
   }
