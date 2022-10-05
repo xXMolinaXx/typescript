@@ -1,12 +1,12 @@
 import app from './app'
-const SocketIO = require('socket.io');
-const databaseConnection = require("./database");
+import SocketIO from 'socket.io'
+import databaseConnection from  "./database";
+const db = new databaseConnection();
 
-
-const server = app.listen(4000, function () {
-    console.log('Hola, servidor iniciado en =>', this.address().port);
+const server = app.listen(4000, function (this:any) {
+    console.log('http://localhost:'+this.address().port);
 });
-const io = SocketIO(server);
+/*const io = SocketIO(server);
 io.on('connection', () => {
     console.log('nueva conexion')
-})
+})*/
