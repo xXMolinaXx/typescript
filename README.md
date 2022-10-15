@@ -1,3 +1,5 @@
+//@ts-check
+comando para que analiza el codigo
 # instalacion de TS
 - npm install typescript --save-dev
 - npx tsc --version   

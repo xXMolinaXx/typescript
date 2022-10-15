@@ -1,9 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const usersModel = require('../models/user.schema');
+import usersModel from '../models/user.schema';
+import { credencialUser } from '../types/users.routes.types';
 router.post('/creatUser', async (req, res) => {
+    console.log('hola');
     try {
-        const { userName, password } = req.body;
+        const { userName, password } : credencialUser = req.body;
         const user = new usersModel({
             desription: '',
             password: password,
@@ -20,6 +22,7 @@ router.post('/creatUser', async (req, res) => {
 
 });
 router.post('/login', (req, res) => {
+    console.log('hola');
     try {
         const { userName, password } = req.body;
         usersModel.findOne({ userName, password }, (err, user) => {
@@ -49,4 +52,4 @@ router.post('/addFriend', (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;
