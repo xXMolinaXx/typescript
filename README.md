@@ -6,6 +6,7 @@ comando para que analiza el codigo
 <br>normalmente typescript no se trabaja como una dependencia global.<br>  
 si no como una dependencia de proyecto.<br>
 extra: gitignore.io pagina para crear un git ignore
+extra2: ts node ejecuta codigo de ts desde backend
 
 # COMANDOS DE TS
 - npx tsc <ARCHIVO> compila de ts a js 
@@ -39,3 +40,12 @@ ejemplo: let numero : (string | number);
 #  Literal types
 son valores predefinidos ejemplo
 let size: 'M'|'L'
+
+# enums
+enum NOMBRE { 
+    NOMBREROL = 1,
+    NOMBREROL = 'VALOR',
+}
+- sirve para definir valor ya definidas, y para definir los valores se hace asi 
+
+const variable: NOMBRE = NOMBRE.NOMBREROL;
