@@ -49,3 +49,12 @@ enum NOMBRE {
 - sirve para definir valor ya definidas, y para definir los valores se hace asi 
 
 const variable: NOMBRE = NOMBRE.NOMBREROL;
+
+# tupla 
+ let variable : [tipo de dato 1 , tipo de datos 2 , ... ,  tipo de datos n]
+ las tuplas definen el tamano de arreglo y el tipo de datos que debe de ser el indice 
+
+ # unknown type
+ - es parecido a any, pero su funcion a mas seguridad que any
+ # never type 
+-  
