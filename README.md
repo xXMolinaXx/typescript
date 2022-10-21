@@ -1,5 +1,5 @@
 //@ts-check
-comando para que analiza el codigo
+comando para que analiza el codigon en js
 # instalacion de TS
 - npm install typescript --save-dev
 - npx tsc --version   
@@ -54,7 +54,16 @@ const variable: NOMBRE = NOMBRE.NOMBREROL;
  let variable : [tipo de dato 1 , tipo de datos 2 , ... ,  tipo de datos n]
  las tuplas definen el tamano de arreglo y el tipo de datos que debe de ser el indice 
 
- # unknown type
- - es parecido a any, pero su funcion a mas seguridad que any
- # never type 
--  
+# unknown type
+- es parecido a any, pero su funcion da mas seguridad que any
+# never type 
+#  sobrecarga de funciones
+- es simplemente definir el tipo de dato de salida  y de entrada de una funcion que acepta en una valor dos tipos o mas tipos de entrada y salida
+-ejemplo =>
+function parse (input: string ):string[];
+function parse (input: string[] ):string;
+function parse (input: string | string[]):string | string[]{
+    ...codigo
+}
+
+# interface 

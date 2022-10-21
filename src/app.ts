@@ -6,6 +6,6 @@ import cors from 'cors';
 app.use(express.json());
 app.use(cors());
 app.use('/users',user);
-
+try
 
 export default app;
