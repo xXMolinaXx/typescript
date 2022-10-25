@@ -74,6 +74,8 @@ interface uno {
 interface dos extends uno {
     ...
 }
+# utility types
+- link https://www.typescriptlang.org/docs/handbook/utility-types.html
 ## omit and pick type
 - interface {
     id:string,
@@ -86,3 +88,10 @@ interface dos extends uno {
 ...
 }
 - pick funciona de la misma forma solo que seleciono los campos que ocupo
+## Partial and required and  readonly
+- funcionan como lo de arriba 
+- partial hace que todos los campos sean opcionales
+- required hace todos los campos necesarios
+interface nueva extends Partial<otraInterface>{
+    ...
+}
