@@ -95,3 +95,5 @@ interface dos extends uno {
 interface nueva extends Partial<otraInterface>{
     ...
 }
+## ReadOnlyArray
+- https://www.typescriptlang.org/docs/handbook/2/objects.html#the-readonlyarray-type
