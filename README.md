@@ -83,6 +83,6 @@ interface dos extends uno {
 }
 - type CreateProduc = Omit<product,'id'|'name'>
 - interface interfasedos extends Omit<product,id> {
-
+...
 }
 - pick funciona de la misma forma solo que seleciono los campos que ocupo
