@@ -67,3 +67,22 @@ function parse (input: string | string[]):string | string[]{
 }
 
 # interface 
+- interface permite herencia
+interface uno {
+    ...
+}
+interface dos extends uno {
+    ...
+}
+## omit and pick type
+- interface {
+    id:string,
+    name:string,
+    place:string,
+    hi:string,
+}
+- type CreateProduc = Omit<product,'id'|'name'>
+- interface interfasedos extends Omit<product,id> {
+
+}
+- pick funciona de la misma forma solo que seleciono los campos que ocupo

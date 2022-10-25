@@ -1,21 +1,24 @@
-import express from 'express'
+import express from "express";
+import { Types } from "mongoose";
+import { Imessage } from "../interface/message.interface";
 const router = express.Router();
-import messageModel from '../models/message.schema';
-router.post('/postMessage', (req, res) => {
-    try {
-        const { userSendMessage, userReceiveMessage, message } = req.body;
-        const message_ = new messageModel({
-            createAt:new Date(),
-            message:message,
-            userReceiveMessage:userReceiveMessage,
-            userSendMessage:userSendMessage
-        });
-        message_.save();
-        res.json({ sucess: true, message: 'todo bien' });
-    } catch (error:any) {
-        res.json({ sucess: false, message: error.message });
-    }
-    res.end();
+import messageModel from "../models/message.schema";
+router.post("/postMessage", async (req, res) => {
+  try {
+    const { userSendMessageId, userReceiveMessageId, message }: Imessage =
+      req.body;
+      const message_ = new messageModel({
+        createAt: new Date(),
+        message: message,
+        userReceiveMessage: new Types.ObjectId(userReceiveMessageId),
+        userSendMessage: new Types.ObjectId(userSendMessageId),
+      });
+      message_.save();
+    res.json({ sucess: true, message: "todo bien" });
+  } catch (error: any) {
+    res.json({ sucess: false, message: error.message });
+  }
+  res.end();
 });
 
-module.exports = router;
+export default router;
