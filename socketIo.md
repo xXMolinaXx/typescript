@@ -1,6 +1,21 @@
 # SOCKET IO
 
-## Handling middleware error
+### cliente code to send and receive data
+codigo de react
+```
+socket.emit('hi',{value1:'id de usuario',value2:socket.id});
+useEffect(() => {
+        socket.on('message', (mess)=>{
+            console.log(mess)
+        })
+        return ()=>{
+            socket.off('message', (mess)=>{
+                console.log(mess)
+            })  
+        }
+      }, [])
+```
+### Handling middleware error
 - If the next method is called with an Error object, the connection will be refused and the client will receive an connect_error event.
 ```
     // server-side 
