@@ -3,7 +3,7 @@
 ## Handling middleware error
 - If the next method is called with an Error object, the connection will be refused and the client will receive an connect_error event.
 
-`
+`console.log('hola')`
 // server-side 
 io.use((socket, next) => {
   const err = new Error("not authorized");
