@@ -11,8 +11,18 @@ const io = new SocketServer(server,{
         origin:'http://localhost:3000'
     }
 });
+//You can register several middleware functions, and they will be executed sequentially:
+//Please make sure to call next() in any case. Otherwise, the connection will be 
+//left hanging until it is closed after a given timeout.
+io.use((socket,next)=>{
+    console.log('mensaje del middleware');
+    next();
+})
 io.on('connection', (socket) => {
-    console.log('nueva conexion de scoket io =>',socket.id)
+    socket.on("hi",(arg)=>{
+        console.log(arg);
+        socket.broadcast.emit('message','hola desde el otro cliente')
+    })
 });
 server.listen(PORT, function (this:any) {
     console.log('http://localhost:'+this.address().port);
