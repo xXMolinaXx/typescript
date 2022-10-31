@@ -4,9 +4,10 @@ import { PORT } from './config/server.conf';
 const db = new databaseConnection();
 
 io.on('connection', (socket) => {
+// @ts-ignore
     socket.on("hi",(arg)=>{
-        console.log(arg);
-        socket.broadcast.emit('message','hola desde el otro cliente')
+        // console.log(arg);
+        // socket.broadcast.emit('message','hola desde el otro cliente')
     })
 });
 server.listen(PORT, function (this:any) {

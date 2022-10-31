@@ -1,7 +1,10 @@
 import express from 'express';
+import { Types } from "mongoose";
+import { body_res_interface } from '../interface/users.interface';
 const router = express.Router();
 import usersModel from '../models/user.schema';
 import { credencialUser } from '../types/users.routes.types';
+
 router.post('/creatUser', async (req, res) => {
     try {
         const { userName, password } : credencialUser = req.body;
@@ -32,6 +35,23 @@ router.post('/login', (req, res) => {
     }
 });
 
+router.post('/getfriends',async (req, res) => {
+    try {
+        const { userId }:body_res_interface = req.body;
+        const user = await usersModel.findById(userId).exec();
+        const user_friend = await usersModel.find({_id:{$in:user?.friends } }).exec();
+        const response = {succes:true,data:user_friend.map(user=>({
+            _id:user._id,
+            userName:user.userName,
+            profilePhoto:user.profilePhoto,
+            status:user.status,
+            description:user.desription
+        }))}
+        res.status(200).json(response);
+    } catch (error:any ) {
+        res.json({ success: false, message: error.message })
+    }
+});
 router.post('/addFriend', (req, res) => {
     try {
         const { userName, userLoggedId } = req.body;

@@ -1,4 +1,10 @@
 # SOCKET IO
+## inicializacion de cliente
+codigo para iniciatilacion para no autoconectarse
+
+`const socket = io(URL, { autoConnect: false });`
+
+autoConnect is set to false so the connection is not established right away. We will manually call socket.connect() later, once the user has selected a username.
 
 ### cliente code to send and receive data
 codigo de react
@@ -31,4 +37,13 @@ useEffect(() => {
     console.log(err.message); // not authorized
     console.log(err.data); // { content: "Please retry later" }
     });
+```
+## socket (as always is called like this in the examples)
+socket can save value of the conection just dont use socket.id or socket.hadshake
+example:
+```
+io.on((socket)=>{
+    socket.newvalue= 123;
+    ...code
+})
 ```

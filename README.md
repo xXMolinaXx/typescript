@@ -1,4 +1,6 @@
-//@ts-check
+//@ts-check able ts check for the js file
+//@ts-nocheck disable ts check just for the entire file
+//@ts-ignore disable ts check just for a line
 comando para que analiza el codigon en js
 # instalacion de TS
 - npm install typescript --save-dev
