@@ -17,6 +17,7 @@ const variable = new name(valor)
 }
 ```
 ## tipos de acceos
+### acceso public
 - el acceso por defecto es public se puede escribir la palabra publi, pero si no se escribe es public por defecto
 ```
 class name {
@@ -29,4 +30,28 @@ class name {
     }
 }
 const variable = new name(valor)
+```
+### acceso private
+- private debe definirce explicitamente
+```
+class MongoDB {
+    private nameDB:string;
+    constructor(nameDb:string)  {
+        this.nameDB = nameDb;
+    }
+    printName ():string{
+        return this.nameDB
+    }
+} 
+```
+### optimizacion de constructor
+```
+constructor ( public year: number, private day:string){}
+//is the same as this
+year: string
+day:string
+constructor ( year: number,day:string){
+    this.year = year
+    ...
+}
 ```
