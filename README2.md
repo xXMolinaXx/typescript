@@ -45,12 +45,17 @@ class MongoDB {
 } 
 ```
 ### optimizacion de constructor
+-podemos definir valores por defecto
 ```
 constructor ( public year: number, private day:string){}
 //is the same as this
 year: string
 day:string
 constructor ( year: number,day:string){
+    this.year = year
+    ...
+}
+constructor ( year: number = 1,day:string){
     this.year = year
     ...
 }
