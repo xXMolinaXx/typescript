@@ -45,7 +45,8 @@ class MongoDB {
 } 
 ```
 ### optimizacion de constructor
--podemos definir valores por defecto
+- podemos definir valores por defecto
+- debe de ir explicitamente el acceso del tipo para poder usar este tipo de optimizacion de codigo
 ```
 constructor ( public year: number, private day:string){}
 //is the same as this
@@ -59,4 +60,13 @@ constructor ( year: number = 1,day:string){
     this.year = year
     ...
 }
+```
+## get and set
+```
+get <name>(){
+    return value
+}
+
+my instance
+console.log(instance.day)
 ```
