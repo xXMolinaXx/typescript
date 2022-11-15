@@ -10,3 +10,23 @@ class name {
 }
 const variable = new name(valor)
 ```
+## metodos de POO
+```
+<nombre>(parametors):<tipo de retorno>{
+
+}
+```
+## tipos de acceos
+- el acceso por defecto es public
+```
+class name {
+    public parametro1:tipo=valor
+    constructor(parametro1:tipo){
+        this.parametro1=parametro1
+    }
+    public metodo():<tipo>{
+        
+    }
+}
+const variable = new name(valor)
+```
