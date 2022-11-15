@@ -17,7 +17,7 @@ const variable = new name(valor)
 }
 ```
 ## tipos de acceos
-- el acceso por defecto es public
+- el acceso por defecto es public se puede escribir la palabra publi, pero si no se escribe es public por defecto
 ```
 class name {
     public parametro1:tipo=valor
@@ -25,7 +25,7 @@ class name {
         this.parametro1=parametro1
     }
     public metodo():<tipo>{
-        
+
     }
 }
 const variable = new name(valor)
