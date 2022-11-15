@@ -12,6 +12,7 @@ app.get('*', function(req, res){
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.use(function(req, res, next) {
+  console.log('haciendo peticion al server')
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
