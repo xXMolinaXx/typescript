@@ -70,3 +70,11 @@ get <name>(){
 my instance
 console.log(instance.day)
 ```
+
+- set funciona de la misma forma solo que con la palabra set
+
+## herencia
+- extends es la palara para usar herencia
+- en el contructor usamos super() pasamos los valores
+## acces protected
+- tipo de datos protected es como private solo que este permite que los hijos que hereden la clases puedan acceder a este valor

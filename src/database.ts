@@ -2,9 +2,7 @@ import { connect, } from 'mongoose'
 import { DATABASE_URL } from './config/server.conf';
 
 class MongoDB {
-    public nameDB:string;
-    constructor(nameDb:string)  {
-        this.nameDB = nameDb;
+    constructor(private nameDb:string)  {
         (async ()=>{
             try {
                 const db = await connect(DATABASE_URL)
@@ -17,7 +15,10 @@ class MongoDB {
     }
     //TS METHODS
     public printName ():string{
-        return this.nameDB
+        return this.nameDb
+    }
+    get databasename (){
+        return this.nameDb
     }
 } 
 export default MongoDB;
