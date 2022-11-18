@@ -1,8 +1,10 @@
 # POO
 ## indice
 1. [ Description. ](#desc)
-2. [ Usage tips. ](#usage)
+2. [ Clases con interfaces ](#POO_INTERFACES)
 ***
+## Indice especial
+- temas importantes
 ## README BASADO EN POO
 - se debe iniciliar un valor a fuerza
 ```
@@ -14,8 +16,11 @@ class name {
 }
 const variable = new name(valor)
 ```
-<a name="desc"></a>
+
 ## metodos de POO
+
+<a name="desc"></a>
+
 ```
 <nombre>(parametors):<tipo de retorno>{
 
@@ -84,4 +89,7 @@ console.log(instance.day)
 ## acces protected
 - tipo de datos protected es como private solo que este permite que los hijos que hereden la clases puedan acceder a este valor
 ## interface con clases
+
+<a name="POO_INTERFACES"></a>
+
 - se usa la palabra extend y despues el nombre del interface 
