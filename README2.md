@@ -2,6 +2,8 @@
 ## indice
 1. [ Description. ](#desc)
 2. [ Clases con interfaces ](#POO_INTERFACES)
+3. [ Singleton ](#SINGLETON)
+
 ***
 ## Indice especial
 - temas importantes
@@ -93,3 +95,11 @@ console.log(instance.day)
 <a name="POO_INTERFACES"></a>
 
 - se usa la palabra extend y despues el nombre del interface 
+
+## SINGLETON: constructor privado
+
+<a name="SINGLETON"></a>
+
+- singleton nos protege de crear multiples instancias de un mismo objeto, solo creamos una sola instancia que se comparte
+- se cambia el acceso del constructor a private
+- **investigar mas**
