@@ -1,4 +1,6 @@
 # POO
+1. [ Description. ](#desc)
+2. [ Usage tips. ](#usage)
 ## README BASADO EN POO
 - se debe iniciliar un valor a fuerza
 ```
@@ -10,6 +12,7 @@ class name {
 }
 const variable = new name(valor)
 ```
+<a name="desc"></a>
 ## metodos de POO
 ```
 <nombre>(parametors):<tipo de retorno>{
@@ -78,3 +81,5 @@ console.log(instance.day)
 - en el contructor usamos super() pasamos los valores
 ## acces protected
 - tipo de datos protected es como private solo que este permite que los hijos que hereden la clases puedan acceder a este valor
+## interface con clases
+- se usa la palabra extend y despues el nombre del interface 
