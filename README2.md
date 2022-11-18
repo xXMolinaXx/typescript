@@ -1,6 +1,8 @@
 # POO
+## indice
 1. [ Description. ](#desc)
 2. [ Usage tips. ](#usage)
+***
 ## README BASADO EN POO
 - se debe iniciliar un valor a fuerza
 ```
