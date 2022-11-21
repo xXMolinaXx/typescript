@@ -1,6 +1,7 @@
 ## indice
 1. [ Instalacion ](#intro)
 2. [ tsconfig.json ](#tsconfig)
+2. [ interfaces ](#interfaces)
 3. [ POO: seccion avanzada ](#desc)
 4. [ Clases con interfaces ](#POO_INTERFACES)
 5. [ Singleton ](#SINGLETON)
