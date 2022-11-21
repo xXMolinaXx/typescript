@@ -1,5 +1,6 @@
 ## indice
 1. [ Instalacion ](#intro)
+2. [ tsconfig.json ](#tsconfig)
 2. [ Extras ](#extras)
 
 <a name="intro"></a>
@@ -7,8 +8,7 @@
 # instalacion de TS
 - npm install typescript --save-dev
 - npx tsc --version   
-<p>normalmente typescript no se trabaja como una dependencia global.<br>  
-si no como una dependencia de proyecto.<p>s
+<p>normalmente typescript no se trabaja como una dependencia global. si no como una dependencia de proyecto.<p>
 
 # COMANDOS DE TS
 - npx tsc <ARCHIVO> compila de ts a js 
@@ -17,10 +17,14 @@ ejemplo npx tsc src/*.ts --outDir dist --target es6
 - npx tsc --init crea el archivo tsconfig.json
 - npx tsc --watch va a estar leyendo mis archivos constantemente y va traspilarlos a js para una actualizacion en vivo
 extra: transpilar de ts a js solo ocupamos ejecutar npx tsc , por que en el archivo tsconfig.json ya esta definido esta instruciones
+
+<a name="tsconfig"></a>
+
 # ARCHIVO tsconfig.json
 - se descomentan estos valores en el archivo 
 - rootDir: cual es la ruta de los archivo que se compilaran
 - outDir: carpeta donde se guardaran los archivo transpilados
+
 ## TIPOS DE DATOS 
 - null
 - string
