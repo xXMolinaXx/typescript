@@ -1,8 +1,10 @@
 import io, {server} from './socket.io'
 import databaseConnection from  "./database";
 import { PORT } from './config/server.conf';
-const db = new databaseConnection('base de datos chat honduras');
-console.log(db.databasename)
+import { DATABASE_URL } from "./config/server.conf";
+const db = new databaseConnection('base de datos chat honduras',DATABASE_URL);
+db.conectDataBase();
+db.nameDataBase = 'Base de datos'
 io.on('connection', (socket) => {
 // @ts-ignore
     socket.on("hi",(arg)=>{
