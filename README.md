@@ -78,6 +78,8 @@ function parse (input: string | string[]):string | string[]{
     ...codigo
 }
 
+<a name="interfaces"></a>
+
 # interface 
 - interface permite herencia
 interface uno {
