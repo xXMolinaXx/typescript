@@ -5,6 +5,7 @@
 4. [ Clases con interfaces ](#POO_INTERFACES)
 5. [ Singleton ](#SINGLETON)
 6. [ Extras ](#extras)
+    - descripcion : esta indice de extra nos dirigen a tips o cosas que nos podrian ser utiles para ejecutar y desarollan proyectos en TS
 
 
 <a name="intro"></a>
