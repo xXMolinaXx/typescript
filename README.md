@@ -1,10 +1,10 @@
 ## indice
 1. [ Instalacion ](#intro)
 2. [ tsconfig.json ](#tsconfig)
-3. [ Extras ](#extras)
-4. [ POO: seccion avanzada ](#desc)
-5. [ Clases con interfaces ](#POO_INTERFACES)
-6. [ Singleton ](#SINGLETON)
+3. [ POO: seccion avanzada ](#desc)
+4. [ Clases con interfaces ](#POO_INTERFACES)
+5. [ Singleton ](#SINGLETON)
+6. [ Extras ](#extras)
 
 
 <a name="intro"></a>
