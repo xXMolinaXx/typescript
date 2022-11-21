@@ -1,15 +1,14 @@
-//@ts-check able ts check for the js file
-//@ts-nocheck disable ts check just for the entire file
-//@ts-ignore disable ts check just for a line
-comando para que analiza el codigon en js
+## indice
+1. [ Instalacion ](#intro)
+2. [ Extras ](#extras)
+
+<a name="intro"></a>
+
 # instalacion de TS
 - npm install typescript --save-dev
 - npx tsc --version   
-<br>normalmente typescript no se trabaja como una dependencia global.<br>  
-si no como una dependencia de proyecto.<br>
-extra: gitignore.io pagina para crear un git ignore
-extra2: ts node ejecuta codigo de ts desde backend
-
+<p>normalmente typescript no se trabaja como una dependencia global.<br>  
+si no como una dependencia de proyecto.<p>s
 
 # COMANDOS DE TS
 - npx tsc <ARCHIVO> compila de ts a js 
@@ -101,3 +100,14 @@ interface nueva extends Partial<otraInterface>{
 }
 ## ReadOnlyArray
 - https://www.typescriptlang.org/docs/handbook/2/objects.html#the-readonlyarray-type
+
+<a name="extras"></a>
+
+## extras
+
+- [gitignore.io](https://www.toptal.com/developers/gitignore/) pagina para crear un git ignore solo se especifica lenguajes de programacion, entorno de desarollo y SO y te genera un gitignore 
+- [ts node](https://www.npmjs.com/package/ts-node) paquete de npm que me permite ejecutar directamente typescript sin necesidad de transpilar los archivos a js
+- //@ts-check, able ts check for the js file permite que ts revise los archivos js y que no tegnan errors
+- //@ts-nocheck, disable ts check just for the entire file
+- //@ts-ignore, disable ts check just for a line
+- [quicktype](https://quicktype.io/) pagina web para crear un type de un json 
