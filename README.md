@@ -82,13 +82,35 @@ function parse (input: string | string[]):string | string[]{
 <a name="interfaces"></a>
 
 # interface 
+- [interface](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces)
 - interface permite herencia
-interface uno {
-    ...
+```
+interface Point {
+  x: number;
+  y: number;
 }
-interface dos extends uno {
-    ...
+ 
+function printCoord(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
 }
+ 
+printCoord({ x: 100, y: 100 });
+```
+- herencia en interfaces
+```
+interface Animal {
+  name: string
+}
+
+interface Bear extends Animal {
+  honey: boolean
+}
+
+const bear = getBear() 
+bear.name
+bear.honey
+```
 # utility types
 - link https://www.typescriptlang.org/docs/handbook/utility-types.html
 ## omit and pick type
