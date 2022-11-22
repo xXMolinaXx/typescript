@@ -5,6 +5,7 @@
 3. [ POO: seccion avanzada ](#desc)
 4. [ Clases con interfaces ](#POO_INTERFACES)
 5. [ Singleton ](#SINGLETON)
+6. [ Genericos ](#genericos)
 6. [ Extras ](#extras)
     - descripcion : esta indice de extra nos dirigen a tips o cosas que nos podrian ser utiles para ejecutar y desarollan proyectos en TS
 
@@ -240,6 +241,9 @@ console.log(instance.day)
 - se cambia el acceso del constructor a private
 - **investigar mas**
 
+<a name="#genericos"></>
+
+## GENERICOS
 
 <a name="extras"></a>
 
