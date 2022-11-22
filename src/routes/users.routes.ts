@@ -62,15 +62,18 @@ router.post("/addFriend", async (req, res) => {
     const { userName, userLoggedId } = req.body;
     const userFriend = await usersModel.findOne({ userName });
     const user = await usersModel.findById(userLoggedId);
-    const friends = user?.friends.map(userId=> userId.toHexString());
-    if( friends?.find(id=>userFriend?._id.toHexString() === id)){
-        res
+    const friends = user?.friends.map((userId) => userId.toHexString());
+    if (friends?.find((id) => userFriend?._id.toHexString() === id)) {
+      res
         .status(200)
-        .json({ success: true, message: "El usuario ya esta en su lista de amigos" });
-        return;
+        .json({
+          success: true,
+          message: "El usuario ya esta en su lista de amigos",
+        });
+      return;
     }
     if (userFriend) {
-      const updateUserReturn = await usersModel.updateOne(
+      await usersModel.updateOne(
         { _id: userLoggedId },
         { $push: { friends: [userFriend._id] } }
       );
