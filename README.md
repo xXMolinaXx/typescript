@@ -254,6 +254,12 @@ function doSomething<type>(value:type){
 doSomething<number>(12);
 ```
 - los genericos son una forma de poder pasar el tipo de valor como parametro
+- una forma mas sencilla es definirlo como tipado dinamico
+- los genericos se pueden usar en funciones, clases y metodos de clases
+
+## decoradores
+
+- los decoradores funcionan para darle una proteccion extra a los datos
 
 <a name="extras"></a>
 
