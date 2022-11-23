@@ -245,6 +245,16 @@ console.log(instance.day)
 
 ## GENERICOS
 
+- [ genericos typescript ](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+```
+function doSomething<type>(value:type){
+ return value;
+}
+
+doSomething<number>(12);
+```
+- los genericos son una forma de poder pasar el tipo de valor como parametro
+
 <a name="extras"></a>
 
 ## extras
