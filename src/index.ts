@@ -3,6 +3,8 @@ import databaseConnection from "./database";
 import { PORT } from "./config/server.conf";
 import { DATABASE_URL } from "./config/server.conf";
 import { userLogged } from "./interface/users.interface";
+import { IchattingData } from "./interface/message.interface";
+import messageModel from "./models/message.schema";
 
 const db = new databaseConnection("base de datos chat honduras", DATABASE_URL);
 db.conectDataBase();
@@ -18,11 +20,49 @@ io.on("connection", (socket) => {
       dataUserConnected: socketOnline,
     });
   });
+  socket.on("chating", (data: IchattingData) => {
+    messageModel.updateOne();
+    io.to(data.socketId).emit("messageResponse", data.message);
+  });
   //@ts-ignore
   socketOnline.push(socket?.user);
   io.emit("peopleConnected", {
     amountConnected: io.engine.clientsCount,
     dataUserConnected: socketOnline,
+  });
+  socket.on("active chat connection", async ({ userLogged, userTochat }) => {
+    const messages = await messageModel.findOne({
+      users: {$all:[userLogged._id, userTochat._id]},
+    });
+    console.log('se encontro chat');
+    if (!messages) {
+      const newMessages = new messageModel({
+        users: [userLogged._id, userTochat._id],
+        message: [],
+        createAt: new Date(),
+      });
+      newMessages.save();
+      io.to(userLogged.socketId).emit("transfering messages", {
+        users: [userLogged._id, userTochat._id],
+        message: [],
+        createAt: new Date(),
+      });
+    } else {
+      io.to(userLogged.socketId).emit("transfering messages", messages);
+    }
+  });
+  socket.on("chating", async ({ userLogged, userTochat, message }) => {
+    const answer = await messageModel.updateOne({
+      users: {$all:[userLogged._id, userTochat._id]},
+    },{ $push: { message: {
+      $each: [ message ],
+      $position: 0
+   }} });
+    const messages = await messageModel.findOne({
+      users: {$all:[userLogged._id, userTochat._id]},
+    });
+    io.to(userLogged.socketId).emit("transfering messages", messages);
+    io.to(userTochat.socketId).emit("transfering messages", messages);
   });
   /*
     // emision a un solo usuario
