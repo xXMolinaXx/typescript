@@ -1,6 +1,6 @@
 import express from "express";
 import { Types } from "mongoose";
-import { Imessage } from "../interface/message.interface";
+import { Imessage } from "../common/interface/message.interface";
 const router = express.Router();
 import messageModel from "../models/message.schema";
 router.post("/postMessage", async (req, res) => {

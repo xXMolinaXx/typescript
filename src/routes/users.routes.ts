@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { Types } from "mongoose";
-import { body_res_interface } from "../interface/users.interface";
+import { body_res_interface } from "../common/interface/users.interface";
 import usersModel from "../models/user.schema";
 import { credencialUser } from "../types/users.routes.types";
 

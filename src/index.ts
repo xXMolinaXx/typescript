@@ -1,10 +1,10 @@
 import io, { server } from "./socket.io";
 import databaseConnection from "./database";
-import { PORT } from "./config/server.conf";
-import { DATABASE_URL } from "./config/server.conf";
-import { userLogged } from "./interface/users.interface";
-import { IchattingData } from "./interface/message.interface";
+
+import { userLogged } from "./common/interface/users.interface";
+import { IchattingData } from "./common/interface/message.interface";
 import messageModel from "./models/message.schema";
+import { DATABASE_URL, PORT } from "@config/server.conf";
 
 const db = new databaseConnection("base de datos chat honduras", DATABASE_URL);
 db.conectDataBase();
