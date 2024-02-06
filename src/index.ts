@@ -4,7 +4,8 @@ import databaseConnection from "./database";
 import { userLogged } from "./common/interface/users.interface";
 import { IchattingData } from "./common/interface/message.interface";
 import messageModel from "./models/message.schema";
-import { DATABASE_URL, PORT } from "@config/server.conf";
+import { DATABASE_URL, PORT } from "./common/config/server.conf";
+
 
 const db = new databaseConnection("base de datos chat honduras", DATABASE_URL);
 db.conectDataBase();
