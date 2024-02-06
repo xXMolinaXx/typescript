@@ -4,10 +4,10 @@ import databaseConnection from "./database";
 import { userLogged } from "./common/interface/users.interface";
 import { IchattingData } from "./common/interface/message.interface";
 import messageModel from "./models/message.schema";
-import { DATABASE_URL, PORT } from "./common/config/server.conf";
+import { CONFIGURATION } from "./common/config/server.conf";
 
 
-const db = new databaseConnection("base de datos chat honduras", DATABASE_URL);
+const db = new databaseConnection("base de datos chat honduras", CONFIGURATION.DATABASE_URL);
 db.conectDataBase();
 db.nameDataBase = "Base de datos";
 
@@ -121,6 +121,6 @@ io.on("connection", (socket) => {
     */
 });
 
-server.listen(PORT, function (this: any) {
+server.listen(CONFIGURATION.PORT, function (this: any) {
   console.log("http://localhost:" + this.address().port);
 });
