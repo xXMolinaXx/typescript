@@ -1,0 +1,23 @@
+# Archivo .editorconfig para proyectos JavaScript
+
+# Establece el estilo de sangría (espacios o tabuladores)
+[*]
+indent_style = space
+indent_size = 2
+
+# Define el ancho de tabulación (si usas tabuladores)
+[*.js]
+indent_style = tab
+indent_size = 4
+
+# Configura los caracteres de fin de línea (LF para Unix, CRLF para Windows)
+[*.{js,json,html,css}]
+end_of_line = lf
+
+# Codificación de caracteres (UTF-8 recomendado)
+[*.{js,json,html,css}]
+charset = utf-8
+
+# Elimina espacios en blanco al final de las líneas
+[*.{js,json,html,css}]
+trim_trailing_whitespace = true
