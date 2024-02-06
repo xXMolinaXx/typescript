@@ -1,0 +1,1 @@
+se creo un archivo src/common/type/env.d.ts este archivo hace un mapeo de proces.env para que autocomplete los valores

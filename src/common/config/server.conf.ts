@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-
 export const CONFIGURATION = {
   IS_QA: process.env.IS_QA || false,
   PORT: process.env.PORT || 4000,
