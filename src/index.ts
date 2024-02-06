@@ -13,7 +13,7 @@ db.nameDataBase = "Base de datos";
 
 let socketOnline: userLogged[] = [];
 
-io.on("connection", (socket) => {
+io.on("connection", (socket:any) => {
   socket.on("disconnect", () => {
     socketOnline = socketOnline.filter((el) => el.socketId !== socket.id);
     io.emit("peopleConnected", {
@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
     amountConnected: io.engine.clientsCount,
     dataUserConnected: socketOnline,
   });
-  socket.on("active chat connection", async ({ userLogged, userTochat }) => {
+  socket.on("active chat connection", async ({ userLogged, userTochat }:any) => {
     const messages = await messageModel.findOne({
       users: {$all:[userLogged._id, userTochat._id]},
     });
@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
       io.to(userLogged.socketId).emit("transfering messages", messages);
     }
   });
-  socket.on("chating", async ({ userLogged, userTochat, message }) => {
+  socket.on("chating", async ({ userLogged, userTochat, message }:any) => {
     const answer = await messageModel.updateOne({
       users: {$all:[userLogged._id, userTochat._id]},
     },{ $push: { message: {
