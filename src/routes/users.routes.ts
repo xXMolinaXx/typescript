@@ -3,15 +3,18 @@ import { Types } from "mongoose";
 import { body_res_interface } from "../common/interface/users.interface";
 import usersModel from "../models/user.schema";
 import { credencialUser } from "../types/users.routes.types";
+import { hashString } from "../common/utils/bcrypt";
+
 
 const router = Router();
 
 router.post("/creatUser", async (req, res) => {
   try {
     const { userName, password }: credencialUser = req.body;
+    const hashPassword = await hashString(password);
     const user = new usersModel({
       desription: "",
-      password: password,
+      password: hashPassword,
       userName: userName,
       profilePhoto: "",
       status: "",
