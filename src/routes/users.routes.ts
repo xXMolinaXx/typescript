@@ -4,7 +4,8 @@ import { body_res_interface } from "../common/interface/users.interface";
 import usersModel from "../models/user.schema";
 import { credencialUser } from "../types/users.routes.types";
 import { hashString } from "../common/utils/bcrypt";
-
+import { jwtGenerator } from "../common/utils/jwt/jwt";
+const passport = require("passport");
 
 const router = Router();
 
@@ -26,17 +27,18 @@ router.post("/creatUser", async (req, res) => {
   }
   res.end();
 });
-router.post("/login", (req, res) => {
-  try {
-    const { userName, password } = req.body;
-    usersModel.findOne({ userName, password }, (err: any, user: any) => {
-      if (user) res.json({ sucess: true, message: "todo bien", data: user });
-      else res.json({ sucess: false, message: "usuario no encontrado" });
-    });
-  } catch (error: any) {
-    res.json({ sucess: false, message: error.message });
+router.post(
+  "/login",
+  passport.authenticate("local", { session: false }),
+  (req, res) => {
+    try {
+      jwtGenerator({ rol: "123", userId: "123" });
+      res.json({ success: true, message: "Ingreso exitoso" });
+    } catch (error: any) {
+      res.json({ sucess: false, message: error.message });
+    }
   }
-});
+);
 
 router.post("/getfriends", async (req, res) => {
   try {
@@ -67,12 +69,10 @@ router.post("/addFriend", async (req, res) => {
     const user = await usersModel.findById(userLoggedId);
     const friends = user?.friends.map((userId) => userId.toHexString());
     if (friends?.find((id) => userFriend?._id.toHexString() === id)) {
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "El usuario ya esta en su lista de amigos",
-        });
+      res.status(200).json({
+        success: true,
+        message: "El usuario ya esta en su lista de amigos",
+      });
       return;
     }
     if (userFriend) {

@@ -9,6 +9,7 @@ export const compareStringHash = async (
   myPlaintextPassword: string,
   hash: string
 ) => {
+  console.log(myPlaintextPassword,hash);
   const compare = await bcrypt.compare(myPlaintextPassword, hash);
   return compare;
 };

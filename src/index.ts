@@ -7,13 +7,16 @@ import messageModel from "./models/message.schema";
 import { CONFIGURATION } from "./common/config/server.conf";
 
 
-const db = new databaseConnection("base de datos chat honduras", CONFIGURATION.DATABASE_URL);
+const db = new databaseConnection(
+  "base de datos chat honduras",
+  CONFIGURATION.DATABASE_URL
+);
 db.conectDataBase();
 db.nameDataBase = "Base de datos";
 
 let socketOnline: userLogged[] = [];
 
-io.on("connection", (socket:any) => {
+io.on("connection", (socket: any) => {
   socket.on("disconnect", () => {
     socketOnline = socketOnline.filter((el) => el.socketId !== socket.id);
     io.emit("peopleConnected", {
@@ -31,36 +34,46 @@ io.on("connection", (socket:any) => {
     amountConnected: io.engine.clientsCount,
     dataUserConnected: socketOnline,
   });
-  socket.on("active chat connection", async ({ userLogged, userTochat }:any) => {
-    const messages = await messageModel.findOne({
-      users: {$all:[userLogged._id, userTochat._id]},
-    });
-    console.log('se encontro chat');
-    if (!messages) {
-      const newMessages = new messageModel({
-        users: [userLogged._id, userTochat._id],
-        message: [],
-        createAt: new Date(),
+  socket.on(
+    "active chat connection",
+    async ({ userLogged, userTochat }: any) => {
+      const messages = await messageModel.findOne({
+        users: { $all: [userLogged._id, userTochat._id] },
       });
-      newMessages.save();
-      io.to(userLogged.socketId).emit("transfering messages", {
-        users: [userLogged._id, userTochat._id],
-        message: [],
-        createAt: new Date(),
-      });
-    } else {
-      io.to(userLogged.socketId).emit("transfering messages", messages);
+      console.log("se encontro chat");
+      if (!messages) {
+        const newMessages = new messageModel({
+          users: [userLogged._id, userTochat._id],
+          message: [],
+          createAt: new Date(),
+        });
+        newMessages.save();
+        io.to(userLogged.socketId).emit("transfering messages", {
+          users: [userLogged._id, userTochat._id],
+          message: [],
+          createAt: new Date(),
+        });
+      } else {
+        io.to(userLogged.socketId).emit("transfering messages", messages);
+      }
     }
-  });
-  socket.on("chating", async ({ userLogged, userTochat, message }:any) => {
-    const answer = await messageModel.updateOne({
-      users: {$all:[userLogged._id, userTochat._id]},
-    },{ $push: { message: {
-      $each: [ message ],
-      $position: 0
-   }} });
+  );
+  socket.on("chating", async ({ userLogged, userTochat, message }: any) => {
+    const answer = await messageModel.updateOne(
+      {
+        users: { $all: [userLogged._id, userTochat._id] },
+      },
+      {
+        $push: {
+          message: {
+            $each: [message],
+            $position: 0,
+          },
+        },
+      }
+    );
     const messages = await messageModel.findOne({
-      users: {$all:[userLogged._id, userTochat._id]},
+      users: { $all: [userLogged._id, userTochat._id] },
     });
     io.to(userLogged.socketId).emit("transfering messages", messages);
     io.to(userTochat.socketId).emit("transfering messages", messages);
