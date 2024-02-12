@@ -16,6 +16,12 @@ router.post("/creatUser", async (req, res) => {
   try {
     const { userName, password }: credencialUser = req.body;
     const hashPassword = await hashString(password);
+    const userFound = await  usersModel.findOne({userName:userName}).exec()
+    if(userFound){
+      res.json({ sucess: false, message: "Ya existe un usuario con ese nombre de usuario" })
+      res.end();
+      return;
+    }
     const user = new usersModel({
       desription: "",
       password: hashPassword,
