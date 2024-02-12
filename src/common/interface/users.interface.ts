@@ -11,5 +11,6 @@ export interface userLogged {
     desription:string,
     friends:string[],
     __v:number,
-    socketId:string,
+    role:string,
+    socketId?:string,
 }

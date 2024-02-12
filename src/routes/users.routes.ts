@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { Types } from "mongoose";
-import { body_res_interface } from "../common/interface/users.interface";
+import {
+  body_res_interface,
+  userLogged,
+} from "../common/interface/users.interface";
 import usersModel from "../models/user.schema";
 import { credencialUser } from "../types/users.routes.types";
 import { hashString } from "../common/utils/bcrypt";
@@ -32,8 +35,13 @@ router.post(
   passport.authenticate("local", { session: false }),
   (req, res) => {
     try {
-      jwtGenerator({ rol: "123", userId: "123" });
-      res.json({ success: true, message: "Ingreso exitoso" });
+      const user = req.user as userLogged;
+      const jwt = jwtGenerator({ rol: user.role, userId: user._id });
+      res.json({
+        success: true,
+        message: "Ingreso exitoso",
+        data: { ...user,jwt  },
+      });
     } catch (error: any) {
       res.json({ sucess: false, message: error.message });
     }
