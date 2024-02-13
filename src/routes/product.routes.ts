@@ -40,26 +40,36 @@ router.post("/findProducts", async (req, res) => {
   }
   res.end();
 });
-router.put("/updateProduct/:mongoId", async (req, res) => {
-  try {
-    const params: product_db_schema = req.body;
-    const mongoId = req.params.mongoId;
-    await productService.updateProduct(params, mongoId);
-    res.json({ success: true, message: "Producto actualizado" });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "error al actualizar" });
+router.put(
+  "/updateProduct/:mongoId",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("admin"),
+  async (req, res) => {
+    try {
+      const params: product_db_schema = req.body;
+      const mongoId = req.params.mongoId;
+      await productService.updateProduct(params, mongoId);
+      res.json({ success: true, message: "Producto actualizado" });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "error al actualizar" });
+    }
   }
-});
+);
 
-router.delete("/:mongoId", async (req, res) => {
-  try {
-    const mongoId = req.params.mongoId;
-    await productService.deleteProduct(mongoId);
-    res.json({ success: true, message: "Producto Eliminado" });
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "error al eliminar" });
+router.delete(
+  "/:mongoId",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("admin"),
+  async (req, res) => {
+    try {
+      const mongoId = req.params.mongoId;
+      await productService.deleteProduct(mongoId);
+      res.json({ success: true, message: "Producto Eliminado" });
+    } catch (error) {
+      console.log(error);
+      res.json({ success: false, message: "error al eliminar" });
+    }
   }
-});
+);
 export default router;
