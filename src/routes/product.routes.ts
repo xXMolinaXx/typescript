@@ -1,4 +1,5 @@
 import express from "express";
+const passport = require("passport");
 import { Types } from "mongoose";
 import { Imessage } from "../common/interface/message.interface";
 const router = express.Router();
@@ -8,16 +9,23 @@ import {
   ISearchProduct,
   product_db_schema,
 } from "../common/interface/product.interface";
-router.post("/createProduct", async (req, res) => {
-  try {
-    const product: product_db_schema = req.body;
-    await productService.createProduct(product);
-    res.json({ success: true, message: "Producto agregado" });
-  } catch (error: any) {
-    res.json({ success: false, message: "error al crear el producto" });
+import { checkRoles } from "../middleware/auth.handler";
+router.post(
+  "/createProduct",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("admin"),
+  async (req, res) => {
+    try {
+      const product: product_db_schema = req.body;
+      await productService.createProduct(product);
+      res.json({ success: true, message: "Producto agregado" });
+    } catch (error: any) {
+      console.log(error);
+      res.json({ success: false, message: "error al crear el producto" });
+    }
+    res.end();
   }
-  res.end();
-});
+);
 router.post("/findProducts", async (req, res) => {
   try {
     const params: ISearchProduct = req.body;
