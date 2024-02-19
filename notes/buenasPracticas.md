@@ -8,3 +8,9 @@
 
 ## nodemon con ts
 - crear el archivo nodemon.json el cual ejecutara ts-node
+
+## dependencias a agregar 
+- agregar eslint 
+- agregar prettier
+- agregar editor config
+- agregar ts
