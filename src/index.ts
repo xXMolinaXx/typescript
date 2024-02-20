@@ -1,83 +1,84 @@
-import io, { server } from "./socket.io";
-import databaseConnection from "./database";
+import io, { server } from './socket.io'
+import DatabaseConnection from './database'
 
-import { userLogged } from "./common/interface/users.interface";
-import { IchattingData } from "./common/interface/message.interface";
-import messageModel from "./models/message.schema";
-import { CONFIGURATION } from "./common/config/server.conf";
+import { type userLogged } from './common/interface/users.interface'
+import { type IchattingData } from './common/interface/message.interface'
+import messageModel from './models/message.schema'
+import { CONFIGURATION } from './common/config/server.conf'
 
-
-const db = new databaseConnection(
-  "base de datos chat honduras",
+const db = new DatabaseConnection(
+  'base de datos chat honduras',
   CONFIGURATION.DATABASE_URL
-);
-db.conectDataBase();
-db.nameDataBase = "Base de datos";
+)
+db.conectDataBase().catch(error => {
+  console.log(error)
+})
+db.nameDataBase = 'Base de datos'
 
-let socketOnline: userLogged[] = [];
+let socketOnline: userLogged[] = []
 
-io.on("connection", (socket: any) => {
-  socket.on("disconnect", () => {
-    socketOnline = socketOnline.filter((el) => el.socketId !== socket.id);
-    io.emit("peopleConnected", {
+io.on('connection', (socket: any) => {
+  socket.on('disconnect', () => {
+    socketOnline = socketOnline.filter((el) => el.socketId !== socket.id)
+    io.emit('peopleConnected', {
       amountConnected: io.engine.clientsCount,
-      dataUserConnected: socketOnline,
-    });
-  });
-  socket.on("chating", (data: IchattingData) => {
-    messageModel.updateOne();
-    io.to(data.socketId).emit("messageResponse", data.message);
-  });
-  //@ts-ignore
-  socketOnline.push(socket?.user);
-  io.emit("peopleConnected", {
+      dataUserConnected: socketOnline
+    })
+  })
+  socket.on('chating', (data: IchattingData) => {
+    messageModel.updateOne()
+    io.to(data.socketId).emit('messageResponse', data.message)
+  })
+  // @ts-expect-error
+  socketOnline.push(socket?.user)
+  io.emit('peopleConnected', {
     amountConnected: io.engine.clientsCount,
-    dataUserConnected: socketOnline,
-  });
+    dataUserConnected: socketOnline
+  })
   socket.on(
-    "active chat connection",
+    'active chat connection',
     async ({ userLogged, userTochat }: any) => {
       const messages = await messageModel.findOne({
-        users: { $all: [userLogged._id, userTochat._id] },
-      });
-      console.log("se encontro chat");
+        users: { $all: [userLogged._id, userTochat._id] }
+      })
+      console.log('se encontro chat')
       if (!messages) {
         const newMessages = new messageModel({
           users: [userLogged._id, userTochat._id],
           message: [],
-          createAt: new Date(),
-        });
-        newMessages.save();
-        io.to(userLogged.socketId).emit("transfering messages", {
+          createAt: new Date()
+        })
+        newMessages.save()
+        io.to(userLogged.socketId).emit('transfering messages', {
           users: [userLogged._id, userTochat._id],
           message: [],
-          createAt: new Date(),
-        });
+          createAt: new Date()
+        })
       } else {
-        io.to(userLogged.socketId).emit("transfering messages", messages);
+        io.to(userLogged.socketId).emit('transfering messages', messages)
       }
     }
-  );
-  socket.on("chating", async ({ userLogged, userTochat, message }: any) => {
+  )
+  socket.on('chating', async ({ userLogged, userTochat, message }: any) => {
     const answer = await messageModel.updateOne(
       {
-        users: { $all: [userLogged._id, userTochat._id] },
+        users: { $all: [userLogged._id, userTochat._id] }
       },
       {
         $push: {
           message: {
             $each: [message],
-            $position: 0,
-          },
-        },
+            $position: 0
+          }
+        }
       }
-    );
+    )
     const messages = await messageModel.findOne({
-      users: { $all: [userLogged._id, userTochat._id] },
-    });
-    io.to(userLogged.socketId).emit("transfering messages", messages);
-    io.to(userTochat.socketId).emit("transfering messages", messages);
-  });
+      users: { $all: [userLogged._id, userTochat._id] }
+    })
+    io.to(userLogged.socketId).emit('transfering messages', messages)
+    io.to(userTochat.socketId).emit('transfering messages', messages)
+  })
   /*
     // emision a un solo usuario
     socket.on('chating',message=>{
@@ -104,7 +105,7 @@ io.on("connection", (socket: any) => {
     socket.on('nombre',()=>{})
     once escucha solo una vez
     socket.once('nombre',()=>{})
-    off apaga la funcion que esta activa a esta funcion de parametro se le pasa la misma funcion de la funcion activa 
+    off apaga la funcion que esta activa a esta funcion de parametro se le pasa la misma funcion de la funcion activa
     socket.off('nombre',()=>{})
    const offEvent = ()=>{
     console.log('turning off ');
@@ -123,8 +124,7 @@ io.on("connection", (socket: any) => {
    socket.join('room1') se puede colocar cualquier nombre
    io.to('room1').emit('send message','hola') enviar mensaje a la room1
    socket.leave('room1') saca de la sala room1
-   
-   
+
    -- namspaces --
    const socket = io(url/namespace); asi se crea un namespace client
    const newnamespace = io.of('namespace') asi se crea en el server el namespace
@@ -132,8 +132,8 @@ io.on("connection", (socket: any) => {
 
    }) server
     */
-});
+})
 
 server.listen(CONFIGURATION.PORT, function (this: any) {
-  console.log("http://localhost:" + this.address().port);
-});
+  console.log('http://localhost:' + this.address().port)
+})

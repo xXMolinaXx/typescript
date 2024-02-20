@@ -10,7 +10,7 @@
 - crear el archivo nodemon.json el cual ejecutara ts-node
 
 ## dependencias a agregar 
-- agregar eslint 
-- agregar prettier
-- agregar editor config
+- agregar eslint (se debe instalar tambien el plugin en el editor de texto que usemos)
+- agregar prettier (se debe instalar tambien el plugin en el editor de texto que usemos)
+- agregar editor config (se debe instalar tambien el plugin en el editor de texto que usemos)
 - agregar ts
