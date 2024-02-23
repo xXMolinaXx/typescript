@@ -29,7 +29,6 @@ io.on('connection', (socket: any) => {
     messageModel.updateOne()
     io.to(data.socketId).emit('messageResponse', data.message)
   })
-  // @ts-expect-error
   socketOnline.push(socket?.user)
   io.emit('peopleConnected', {
     amountConnected: io.engine.clientsCount,
