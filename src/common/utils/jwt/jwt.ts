@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import { CONFIGURATION } from "../../config/server.conf";
+import jwt from 'jsonwebtoken'
+import { CONFIGURATION } from '../../config/server.conf'
 
-export const jwtGenerator = ({ userId, rol }: { userId: string; rol: string }) => {
-  return jwt.sign({ sub: userId, role: rol }, CONFIGURATION.JWT_SECRET);
-};
+export const jwtGenerator = ({ userId, rol }: { userId: string, rol: string }): string => {
+  return jwt.sign({ sub: userId, role: rol }, CONFIGURATION.JWT_SECRET)
+}
