@@ -11,8 +11,8 @@ class Category {
     return products
   }
 
-  async updateCategory (products: any, mongoId: string): Promise<void> {
-    await CategorySchema.updateOne({ _id: mongoId }, { $set: { ...products } })
+  async updateCategory (params: category_schema, mongoId: string): Promise<void> {
+    await CategorySchema.updateOne({ _id: mongoId }, { $set: { ...params } })
   }
 
   async deleteCategory (mongoId: string): Promise<void> {
