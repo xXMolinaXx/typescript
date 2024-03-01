@@ -7,30 +7,22 @@ import {
 } from '../common/interface/users.interface'
 import UsersModel from '../models/user.schema'
 import { type credencialUser } from '../types/users.routes.types'
-import { hashString } from '../common/utils/bcrypt'
+
 import { jwtGenerator } from '../common/utils/jwt/jwt'
 import passport from 'passport'
+import user from '../services/user.service'
 
 const router = Router()
 
 router.post('/creatUser', async (req, res) => {
   try {
     const { userName, password }: credencialUser = req.body
-    const hashPassword = await hashString(password)
-    const userFound = await UsersModel.findOne({ userName }).exec()
+    const userFound = await user.createUser({userName, password})
     if (userFound) {
       res.json({ sucess: false, message: 'Ya existe un usuario con ese nombre de usuario' })
       res.end()
       return
     }
-    const user = new UsersModel({
-      desription: '',
-      password: hashPassword,
-      userName,
-      profilePhoto: '',
-      status: ''
-    })
-    await user.save()
     res.json({ sucess: true, message: 'todo bien' })
   } catch (error: any) {
     res.json({ sucess: false, message: error.message })
