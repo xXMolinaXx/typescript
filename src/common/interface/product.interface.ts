@@ -3,7 +3,7 @@ export interface product_db_schema {
   price: number
   photo: string
   description: string
-  categories: string
+  categories: string[]
 }
 
 export interface ISearchProduct {

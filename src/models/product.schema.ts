@@ -7,7 +7,7 @@ const productSchema = new Schema<product_db_schema>(
     price: { type: Number, required: true },
     photo: String,
     description: String,
-    categories: String
+    categories: [String]
   },
   {
     timestamps: true
