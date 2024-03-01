@@ -5,7 +5,8 @@ import path from 'path'
 import user from './routes/users.routes'
 import message from './routes/message.routes'
 import product from './routes/product.routes'
-import category from "./routes/category.routes"
+import category from './routes/category.routes'
+import bill from './routes/bill.routes'
 import cors from 'cors'
 
 import { stategyLocal } from './common/utils/auth/local.strategy'
@@ -31,6 +32,7 @@ app.use('/users', user)
 app.use('/message', message)
 app.use('/product', product)
 app.use('/category', category)
+app.use('/bill', bill)
 passport.use(stategyLocal)
 passport.use(jwtStrategy)
 
