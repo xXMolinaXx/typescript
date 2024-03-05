@@ -4,6 +4,12 @@ export interface product_db_schema {
   photo: string
   description: string
   categories: string[]
+  evaluation: IEvaluation[]
+  meanEvaluation: number
+}
+interface IEvaluation {
+  userId: string
+  value: number
 }
 
 export interface ISearchProduct {

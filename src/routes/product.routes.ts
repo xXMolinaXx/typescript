@@ -9,6 +9,21 @@ import {
 import { checkRoles } from '../middleware/auth.handler'
 import passport from 'passport'
 const router = express.Router()
+router.get('/:productId', passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'client'), async (req, res) => {
+    try {
+      const productRes = await productService.getOneProduct(req.params.productId)
+      if (productRes !== null) {
+        res.json({ success: true, message: 'Producto encontrado', data: productRes })
+      } else {
+        res.json({ success: false, message: 'Este producto no existe' })
+      }
+    } catch (error: any) {
+      console.log(error)
+      res.json({ success: false, message: 'Error el encontrar producto' })
+    }
+    res.end()
+  })
 router.post(
   '/createProduct',
   passport.authenticate('jwt', { session: false }),

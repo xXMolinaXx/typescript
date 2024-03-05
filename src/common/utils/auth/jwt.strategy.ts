@@ -11,7 +11,6 @@ const jwtStrategy = new JwtStrategy(opts, async function (
   done: any
 ) {
   try {
-    console.log(jwt_payload);
     const user = await usersModel.findOne({ _id: jwt_payload.sub });
     if (!user) {
       done({ success: false, message: "No existe ningun usuario" }, false);

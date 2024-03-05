@@ -7,7 +7,12 @@ const productSchema = new Schema<product_db_schema>(
     price: { type: Number, required: true },
     photo: String,
     description: String,
-    categories: [String]
+    categories: [String],
+    evaluation: {
+      userId: Schema.Types.ObjectId,
+      value: { type: Number, min: 0, max: 5 }
+    },
+    meanEvaluation: { type: Number, default: 0 }
   },
   {
     timestamps: true
