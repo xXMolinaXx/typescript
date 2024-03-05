@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { IBill } from '../common/interface/bill.interface'
+import { type IBill } from '../common/interface/bill.interface'
 
 const billSchema = new Schema<IBill>({
   products: [String],
