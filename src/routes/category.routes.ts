@@ -12,8 +12,8 @@ router.post(
   checkRoles('admin'),
   async (req, res) => {
     try {
-      const { description, name }: category_schema = req.body
-      await CategoryService.insertCategory({ description, name })
+      const {  name }: category_schema = req.body
+      await CategoryService.insertCategory({  name })
       res.json({ sucess: true, message: 'Categoria creada' })
     } catch (error: any) {
       res.json({ sucess: false, message: 'Error al crear categoria' })
