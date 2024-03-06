@@ -24,4 +24,36 @@ router.post(
   }
 )
 
+router.post(
+  '/findAll',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin'),
+  async (req, res) => {
+    try {
+      const { skip, limit, searchText } = req.body
+      const bills = await billService.findAll(skip, limit, searchText)
+      res.json({ sucess: true, message: '', data: bills })
+    } catch (error: any) {
+      res.json({ sucess: false, message: 'Error al cargar las compras' })
+    }
+    res.end()
+  }
+)
+
+router.post(
+  '/create',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'client'),
+  async (req, res) => {
+    try {
+      const { skip, limit, userId } = req.body
+      const bills = await billService.findAll(skip, limit, userId)
+      res.json({ sucess: true, message: 'Tu compra a sido realizada', data: bills })
+    } catch (error: any) {
+      console.log(error)
+      res.json({ sucess: false, message: 'Error al cargar las compras' })
+    }
+    res.end()
+  }
+)
 export default router
