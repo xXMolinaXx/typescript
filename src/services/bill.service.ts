@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { Types } from 'mongoose'
 import { type IBill } from '../common/interface/bill.interface'
 import BillSchema from '../models/bill.schema'
 import ProductSchema from '../models/product.schema'
@@ -10,7 +11,9 @@ class Bill {
     products.forEach(product => { totalPay += product.price })
     await new BillSchema({
       totalPay,
-      products: dataBill.products
+      products: dataBill.products,
+      userId: dataBill.userId,
+      nameClient: dataBill.nameClient
     }).save()
   }
 
@@ -22,7 +25,7 @@ class Bill {
   }
 
   async findByUser (skip: number, limit = 20, userId: string) {
-    const bills = BillSchema.find({ _id: userId }).skip(skip).limit(limit)
+    const bills = BillSchema.find({ userId: new Types.ObjectId(userId) }).skip(skip).limit(limit)
     return await bills
   }
 }

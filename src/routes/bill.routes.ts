@@ -41,13 +41,13 @@ router.post(
 )
 
 router.post(
-  '/create',
+  '/findAllUser',
   passport.authenticate('jwt', { session: false }),
   checkRoles('admin', 'client'),
   async (req, res) => {
     try {
       const { skip, limit, userId } = req.body
-      const bills = await billService.findAll(skip, limit, userId)
+      const bills = await billService.findByUser(skip, limit, userId)
       res.json({ sucess: true, message: 'Tu compra a sido realizada', data: bills })
     } catch (error: any) {
       console.log(error)
